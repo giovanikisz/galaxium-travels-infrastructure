@@ -1,0 +1,105 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Email para demonstração de integrações do watsonx Orchestrate",
+      "version": "0.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://ai-agent-send-email.1ul02kxx87w4.us-south.codeengine.appdomain.cloud/",
+        "description": "IBM Code Engine - Email para demonstração de integrações do watsonx Orchestrate"
+      }
+    ],
+    "paths": {
+      "/send_email/": {
+        "post": {
+          "summary": "Send Email",
+          "description": "Rota responsável por enviar um e-mail.",
+          "operationId": "send_email_send_email__post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "EmailRequest": {
+          "properties": {
+            "email_destination":{
+              "title": "Email Destination"
+            },
+            "first_name":{
+              "title": "Your Name"
+            }
+          },
+          "type": "object",
+          "title": "EmailRequest"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {},
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
