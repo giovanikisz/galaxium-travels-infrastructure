@@ -12,6 +12,7 @@ class Employee(BaseModel):
     id: Optional[int] = None
     first_name: str
     last_name: str
+    email: str
     department: str
     position: str
     hire_date: str
